@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +19,18 @@ Route::get('/posts', function () {
 
     $posts = Post::all();
     return view('posts.index',['posts'=>$posts]);
-});
+})->name('posts.index');
+
+// create
+Route::get('/posts/create', function () {
+
+    return view("posts.create");
+})->name('posts.create');
+
+// @todo - agregar campos faltantes a la vista y validaciones
+Route::post('/posts/store', function (Request $request) {
+    $post = new Post($request->input());
+    $post->saveOrFail();
+    return redirect()->route("posts.index")->with(["mensaje" => "Post creado"
+    ]);
+})->name('posts.store');

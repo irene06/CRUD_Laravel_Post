@@ -1,3 +1,5 @@
+<a href="{{route('posts.create')}}" class="btn btn-success mb-2">Agregar</a>
+
 <table class="table">
   <thead>
     <tr>
