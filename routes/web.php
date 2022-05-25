@@ -40,8 +40,14 @@ Route::get('/posts/{post}/edit', function (Post $post) {
     return view("posts.edit", ["post" => $post]);
 })->name('posts.edit');
 
-Route::put('/posts/{post}/update',function(Request $request, Post $post) {
+Route::put('/posts/{post}/update', function (Request $request, Post $post) {
     $post->fill($request->input())->saveOrFail();
     return redirect()->route("posts.index")->with(["mensaje" => "post actualizado"]);
 })->name('posts.update');
 
+// delete
+Route::delete('/posts/{post}/delete', function (Post $post) {
+    $post->delete();
+    return redirect()->route("posts.index")->with(["mensaje" => "Post eliminado",
+    ]);
+})->name('posts.delete');

@@ -44,6 +44,15 @@
           <i class="fa fa-edit"></i>Editar
         </a>
       </td> 
+      <td>
+        <form action="{{route('posts.delete', [$post])}}" method="post">
+            @method("delete")
+            @csrf
+            <button type="submit" class="btn btn-danger">
+                <i class="fa fa-trash"></i>Eliminar
+            </button>
+        </form>
+      </td>
     </tr>
     @endforeach
   </tbody>
