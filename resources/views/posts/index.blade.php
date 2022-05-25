@@ -24,6 +24,7 @@
       <th scope="col">Video</th>
       <th scope="col">Created at</th>
       <th scope="col">Updated at</th>
+      <th>Ver</th>
       <th>Editar</th>
       <th>Eliminar</th>
       
@@ -40,10 +41,17 @@
       <td>{{$post->created_at}}</td>
       <td>{{$post->updated_at}}</td>
       <td>
+        <a class="btn btn-success" href="{{route('posts.show',[$post])}}">
+          <i class="fa fa-eye"></i>Ver
+        </a>
+      </td> 
+      
+      <td>
         <a class="btn btn-warning" href="{{route('posts.edit',[$post])}}">
           <i class="fa fa-edit"></i>Editar
         </a>
       </td> 
+
       <td>
         <form action="{{route('posts.delete', [$post])}}" method="post">
             @method("delete")

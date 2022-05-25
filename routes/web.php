@@ -51,3 +51,8 @@ Route::delete('/posts/{post}/delete', function (Post $post) {
     return redirect()->route("posts.index")->with(["mensaje" => "Post eliminado",
     ]);
 })->name('posts.delete');
+
+// read
+Route::get('/posts/{post}/show', function (Post $post) {
+    return view("posts.show", ["post" => $post]);
+})->name('posts.show');
