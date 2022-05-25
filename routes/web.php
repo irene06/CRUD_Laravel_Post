@@ -34,3 +34,14 @@ Route::post('/posts/store', function (Request $request) {
     return redirect()->route("posts.index")->with(["mensaje" => "Post creado"
     ]);
 })->name('posts.store');
+
+// edit
+Route::get('/posts/{post}/edit', function (Post $post) {
+    return view("posts.edit", ["post" => $post]);
+})->name('posts.edit');
+
+Route::put('/posts/{post}/update',function(Request $request, Post $post) {
+    $post->fill($request->input())->saveOrFail();
+    return redirect()->route("posts.index")->with(["mensaje" => "post actualizado"]);
+})->name('posts.update');
+
